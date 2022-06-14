@@ -1,0 +1,81 @@
+.tab-header-background {
+    -fx-background-color:   #800070
+;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill:  #38c300;
+    -fx-font-weight: bold;
+}
+.tab:selected .focus-indicator {
+    -fx-border-radius: 10 10 0 0, 10 10 0 0;
+    -fx-border-insets: -6 -9 -8 -8, -5 -8 -7 -7;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-padding:0 10 0 0;
+}
+
+.tab-header-area .tab{
+    -fx-padding:4 10 5 10;
+    -fx-background-radius: 10 10 0 0;
+}
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color:white;
+    -fx-border-color: #a3a7a8;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-insets: 0;
+    -fx-pref-height: 45px;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#328BDB 0%, #207BCF 25%, #1973C9 75%, #0A65BF 100%);
+    -fx-text-fill: white;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #0093ff;
+    -fx-text-fill: white;
+}
+
+/*.list-view .list-cell:even {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+}
+.list-view .list-cell:odd {
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+}*/
+
+.button{
+    -fx-background-color: #38c300;
+            /*linear-gradient(#12903e,  #38c300),
+            linear-gradient(#12903e,  #38c300),
+            linear-gradient(#12903e,  #38c300),
+            linear-gradient(#38c300 0%, #12903e 50%, #38c300 100%);*/
+    -fx-background-radius: 30;
+
+    -fx-text-fill: #ffffff;
+
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+}
+
+.button:hover{
+    -fx-background-color: green;
+}
+#forgotButton{
+    -fx-background-color: #D0342C;
+            /*linear-gradient(#901212,  #D0342C ),
+            linear-gradient(#901212,  #D0342C ),
+            linear-gradient(#901212,  #D0342C ),
+            linear-gradient(#D0342C  0%, #901212 50%, #D0342C  100%);*/
+    -fx-background-radius: 30;
+
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+}
+#forgotButton:hover{
+    -fx-background-color: #901212;
+}
