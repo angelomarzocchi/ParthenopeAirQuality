@@ -1,9 +1,7 @@
 package com.example.gradleairquality.Model.ThresholdManagement.Threshold;
 
-import java.util.ArrayList;
-
 /**
- * interfaccia per implementare Observer
+ * interfaccia per implementare Observer (lato Osservato)
  */
 public interface Publisher {
 

@@ -3,6 +3,9 @@ package com.example.gradleairquality.Model.ThresholdManagement.Sensor;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Decorator di base di Sensor
+ */
 public class SensorDecorator implements Measurer {
 
     /**

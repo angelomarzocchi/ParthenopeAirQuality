@@ -1,7 +1,10 @@
 package com.example.gradleairquality.Model.ThresholdManagement.Threshold;
+
 import com.example.gradleairquality.Model.ThresholdManagement.Sensor.measureType;
 
-
+/**
+ * Richiesta di modifica di una soglia
+ */
 public class EditRequest {
 
     public EditRequest(int newValue, measureType type) {

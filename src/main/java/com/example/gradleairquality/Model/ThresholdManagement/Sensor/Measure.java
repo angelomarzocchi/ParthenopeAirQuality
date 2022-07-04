@@ -7,8 +7,6 @@ import java.time.LocalDate;
 
 /**
  * una singola misurazione
- *
- * @author angelo
  */
 public class Measure {
 

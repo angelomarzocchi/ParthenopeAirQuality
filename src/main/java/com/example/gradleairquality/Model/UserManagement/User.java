@@ -3,6 +3,9 @@ package com.example.gradleairquality.Model.UserManagement;
 import java.sql.Date;
 import java.sql.SQLException;
 
+/**
+ * Classe astratta che modella un utente generico
+ */
 public abstract class User {
 
     protected String name;
@@ -20,8 +23,6 @@ public abstract class User {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-
-
 
 
     public String getName() {
@@ -54,23 +55,15 @@ public abstract class User {
     }
 
 
-
-
     // Template method
 
 
+    //Metodo "abstract" primitivo che deve essere implementato
+    protected abstract boolean logIn() throws SQLException, ClassNotFoundException;
 
 
     //Metodo "abstract" primitivo che deve essere implementato
-    protected abstract boolean logIn () throws SQLException, ClassNotFoundException;
-
-
-
-
-
-
-    //Metodo "abstract" primitivo che deve essere implementato
-    protected abstract void logOut ();
+    protected abstract void logOut();
 
 
     public void setName(String name) {

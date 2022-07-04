@@ -1,5 +1,7 @@
 package com.example.gradleairquality.Model.MapManagement;
+
 import com.example.gradleairquality.Model.UserManagement.Manager;
+import javafx.scene.image.Image;
 
 import java.io.IOException;
 import java.nio.file.FileSystem;
@@ -18,30 +20,27 @@ import java.net.URL;
 /**
  * La Planimetria è composta da piani che a sua volta sono composte da stanze
  */
-public class Planimetry implements Interface_MapManagement{
+public class Planimetry implements Interface_MapManagement {
     public Planimetry(String buildingName, Double altitudePlanimetry, Double longitudePlanimetry, Double squareMetersPlanimetry) {
-       this.buildingName = buildingName;
+        this.buildingName = buildingName;
         this.altitudePlanimetry = altitudePlanimetry;
         this.longitudePlanimetry = longitudePlanimetry;
-        this.squareMetersPlanimetry= squareMetersPlanimetry;
-       totalPlan= new ArrayList<Plan>();
+        this.squareMetersPlanimetry = squareMetersPlanimetry;
+        totalPlan = new ArrayList<Plan>();
     }
+
     Scanner scanner = new Scanner(System.in);
 
     /**
-     *Planimetria dei 4 piani principalli della Parthenope più il piano terra
+     * Planimetria dei 4 piani principalli della Parthenope più il piano terra
      */
     @Override
-    public LinkedList<BufferedImage> viewmap(Manager manager) {
-        LinkedList<BufferedImage> myPicture= new LinkedList<>();
-        int i=1;
-        while(i<5) {
-            String imagePath = "src/FileSystem/piano" +"_" + i + "_" + manager.getGovernanceArea().getNome().replace(" ","_") + ".jpg";
-            try {
-                myPicture.add(ImageIO.read(new File(imagePath)));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public LinkedList<Image> viewmap(Manager manager) {
+        LinkedList<Image> myPicture = new LinkedList<>();
+        int i = 1;
+        while (i < 5) {
+            String imagePath = "com/example/gradleairquality/FileSystem/piano" + "_" + i + "_" + manager.getGovernanceArea().getNome().replace(" ", "_") + ".jpg";
+            myPicture.add(new Image(imagePath));
             i++;
         }
 
@@ -55,12 +54,10 @@ public class Planimetry implements Interface_MapManagement{
     }
 
 
-
-
     private final String buildingName;
     private final Double altitudePlanimetry;
     private final Double longitudePlanimetry;
     private final Double squareMetersPlanimetry;
-    private final ArrayList<Plan>totalPlan;
+    private final ArrayList<Plan> totalPlan;
 
 }

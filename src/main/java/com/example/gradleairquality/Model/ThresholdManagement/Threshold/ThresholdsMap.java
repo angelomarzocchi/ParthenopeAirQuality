@@ -1,17 +1,9 @@
 package com.example.gradleairquality.Model.ThresholdManagement.Threshold;
+
 import com.example.gradleairquality.Model.ThresholdManagement.Sensor.measureType;
 import com.example.gradleairquality.Model.UserManagement.DBService;
 import com.example.gradleairquality.Model.UserManagement.Manager;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -24,14 +16,14 @@ public class ThresholdsMap {
      */
 
     public static class Memento {
-        public Memento( Map<measureType, Threshold> thresholds) {
+        public Memento(Map<measureType, Threshold> thresholds) {
             this.thresholds = new HashMap<>();
             this.thresholds.put(measureType.TEMPERATURE, thresholds.get(measureType.TEMPERATURE).getThreshold());
-            this.thresholds.put(measureType.HUMIDITY,thresholds.get(measureType.HUMIDITY).getThreshold());
-            this.thresholds.put(measureType.CARBON,thresholds.get(measureType.CARBON).getThreshold());
-            this.thresholds.put(measureType.PM2,thresholds.get(measureType.PM2).getThreshold());
-            this.thresholds.put(measureType.PM10,thresholds.get(measureType.PM10).getThreshold());
-            this.thresholds.put(measureType.WIND,thresholds.get(measureType.WIND).getThreshold());
+            this.thresholds.put(measureType.HUMIDITY, thresholds.get(measureType.HUMIDITY).getThreshold());
+            this.thresholds.put(measureType.CARBON, thresholds.get(measureType.CARBON).getThreshold());
+            this.thresholds.put(measureType.PM2, thresholds.get(measureType.PM2).getThreshold());
+            this.thresholds.put(measureType.PM10, thresholds.get(measureType.PM10).getThreshold());
+            this.thresholds.put(measureType.WIND, thresholds.get(measureType.WIND).getThreshold());
 
         }
 
@@ -40,8 +32,7 @@ public class ThresholdsMap {
         }
 
 
-
-        private final Map<measureType,Integer> thresholds;
+        private final Map<measureType, Integer> thresholds;
 
     }
 
@@ -51,19 +42,14 @@ public class ThresholdsMap {
     }
 
 
-
-
-
-
-
-    protected Memento getSnapshot(){
+    protected Memento getSnapshot() {
         return new Memento(thresholds);
     }
 
-    protected void restoreFromSnapshot( Memento previousState){
+    protected void restoreFromSnapshot(Memento previousState) {
 
-        for(measureType t : measureType.values()){
-            thresholds.replace(t,new Threshold(t));
+        for (measureType t : measureType.values()) {
+            thresholds.replace(t, new Threshold(t));
             thresholds.get(t).setThreshold(previousState.thresholds.get(t));
         }
 
@@ -71,24 +57,22 @@ public class ThresholdsMap {
     }
 
 
-
     /**
-     *
      * @return the only instance of ThresholdsMap
      */
     public static ThresholdsMap getThresholdsInstance(Manager manager) throws SQLException, ClassNotFoundException {
 
-        if(thresholdsInstance == null){
+        if (thresholdsInstance == null) {
             //load map
-             thresholdsInstance = new ThresholdsMap();
+            thresholdsInstance = new ThresholdsMap();
             ResultSet dbRequest = DBService.getThresholds(manager);
-            if(dbRequest != null){
+            if (dbRequest != null) {
 
                 dbRequest.beforeFirst();
-                while(dbRequest.next()){
+                while (dbRequest.next()) {
                     Threshold t = new Threshold(measureType.valueOf(dbRequest.getString(2)));
                     t.setThreshold(dbRequest.getInt(3));
-                    thresholdsInstance.thresholds.put(t.getType(),t);
+                    thresholdsInstance.thresholds.put(t.getType(), t);
                 }
             }
 
@@ -101,21 +85,16 @@ public class ThresholdsMap {
     }
 
 
-
-    public void resetToDefaultValues() {
-        for (defaultValues d: defaultValues.values()) {
-            this.thresholds.get(d.type).setThreshold(d.number);
-        }
+    public void resetToDefaultValues(measureType m) {
+        thresholds.replace(m,new Threshold(m));
     }
 
-        public void saveChanges(Manager manager) throws SQLException, ClassNotFoundException {
-            DBService.saveThresholds(manager);
-        }
+    public void saveChanges(Manager manager) throws SQLException, ClassNotFoundException {
+        DBService.saveThresholds(manager);
+    }
 
 
-
-
-    private final Map<measureType,Threshold> thresholds;
+    private final Map<measureType, Threshold> thresholds;
     private static ThresholdsMap thresholdsInstance = null;
 
 }

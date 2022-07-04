@@ -1,8 +1,13 @@
 package com.example.gradleairquality.Model.CompareManagement;
+
 import com.example.gradleairquality.Model.ThresholdManagement.Sensor.*;
 
 import java.util.*;
 
+/**
+ * AreaEstimator é una classe che si occupa di calcolare le statistiche dell'area facendo la media
+ * delle ultime misure dei sensori.
+ */
 public class AreaEstimator {
 
     List<Sensor> sensors;
@@ -14,13 +19,13 @@ public class AreaEstimator {
 
     public Map<measureType, Double> getAverages() {
         averages = new HashMap<>();
-        for(measureType m: measureType.values()){
+        for (measureType m : measureType.values()) {
             getAverage(m, averages);
         }
         return averages;
     }
 
-    private void getAverage(measureType averageType, Map<measureType,Double> average) {
+    private void getAverage(measureType averageType, Map<measureType, Double> average) {
         //Map<measureType, Double> average = new HashMap<>();
         double temp = 0.0;
         int numberOfMeasurement = 0;
@@ -49,18 +54,17 @@ public class AreaEstimator {
                 case CARBON -> decorator = new CarbonDecorator(s);
             }
             List<Measure> measureToAdd = decorator.getMeasures().
-                            stream()
-                            .sorted(measureComparator.reversed()).toList();
+                    stream()
+                    .sorted(measureComparator.reversed()).toList();
             if (measureToAdd.size() > 0) {
                 numberOfMeasurement++;
                 temp += measureToAdd.get(0).getValue();
             }
 
 
-
         }
         temp = temp / numberOfMeasurement;
-        average.replace(averageType,temp);
+        average.replace(averageType, temp);
     }
 
 

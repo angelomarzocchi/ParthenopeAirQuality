@@ -1,12 +1,14 @@
 package com.example.gradleairquality.Model.UserManagement;
-import com.example.gradleairquality.Model.ThresholdManagement.*;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.InputMismatchException;
 
 
-
+/**
+ * Classe che estente User per modellare un Admin della piattaforma
+ */
 public class Admin extends User {
 
 
@@ -21,7 +23,7 @@ public class Admin extends User {
     public boolean logIn() throws SQLException, ClassNotFoundException {
         ResultSet set = DBService.logIn(username, password);
 
-        if(set != null) {
+        if (set != null) {
             if (set.getString(8).equals("AD")) {
 
                 this.name = set.getString(2);
@@ -29,15 +31,10 @@ public class Admin extends User {
                 this.birthDate = set.getDate(4);
                 return true;
             }
-        }return false;
+        }
+        return false;
 
     }
-
-
-
-
-
-
 
 
     //Implementazione metodo logout

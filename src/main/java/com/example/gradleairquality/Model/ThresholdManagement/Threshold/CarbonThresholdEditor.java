@@ -3,8 +3,12 @@ package com.example.gradleairquality.Model.ThresholdManagement.Threshold;
 import com.example.gradleairquality.Model.ThresholdManagement.Sensor.measureType;
 import com.example.gradleairquality.Model.UserManagement.Manager;
 
-import javax.management.InvalidAttributeValueException;
 
+import java.sql.SQLException;
+
+/**
+ * Editor della soglia Carbon
+ */
 public class CarbonThresholdEditor extends ThresholdEditor {
 
     public CarbonThresholdEditor(Editor nextEditor) {
@@ -12,28 +16,26 @@ public class CarbonThresholdEditor extends ThresholdEditor {
     }
 
     @Override
-    public void edit(EditRequest request, Manager manager) {
-        try {
-            if (request.getType() == measureType.CARBON) {
-                if(request.getNewValue() >= 0 && request.getNewValue() <=12800) {
-                    ThresholdsMap.
-                            getThresholdsInstance(manager)
-                            .getThresholds().
-                            get(measureType.CARBON).
-                            setThreshold(request.getNewValue());
-
-                }else {throw new InvalidAttributeValueException("The value is out of bound");}
+    public boolean edit(EditRequest request, Manager manager) throws SQLException, ClassNotFoundException {
+        if (request.getType() == measureType.CARBON) {
+            if (request.getNewValue() >= 0 && request.getNewValue() <= 12800) {
+                ThresholdsMap.
+                        getThresholdsInstance(manager)
+                        .getThresholds().
+                        get(measureType.CARBON).
+                        setThreshold(request.getNewValue());
+                return true;
 
             } else {
-                getNextEditor().edit(request,manager);
+                return false;
             }
-        } catch(Exception e){
-            if(e.getClass() != InvalidAttributeValueException.class) {
-                throw new NullPointerException("There is no Editor to handle that request");
-            } else{ System.out.println( e.getMessage());}
+        } else if (getNextEditor() != null) {
+            return getNextEditor().edit(request, manager);
+        } else {
+            return false;
         }
     }
 
 
-    }
+}
 

@@ -1,15 +1,17 @@
 package com.example.gradleairquality.Model.MapManagement;
+
 /**
  * Abbiamo di creare una classe contenente le informazioni relative ad una stanza in ogni piano essendo che appunto
  * potrebbero esserci più stanze
- * */
+ */
 
 public class Room {
-    public Room (String TypeRoom, Double metresSquare, Double lenghtRoom){
-    this.TypeRoom= TypeRoom;
-    this.metresSquare= metresSquare;
-    this.lenghtRoom= lenghtRoom;
+    public Room(String TypeRoom, Double metresSquare, Double lenghtRoom) {
+        this.TypeRoom = TypeRoom;
+        this.metresSquare = metresSquare;
+        this.lenghtRoom = lenghtRoom;
     }
+
     private final String TypeRoom;
     private final Double metresSquare;
     private final Double lenghtRoom;

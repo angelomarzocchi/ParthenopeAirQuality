@@ -7,6 +7,9 @@ import com.example.gradleairquality.Model.ThresholdManagement.Sensor.Sensor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe che modella il piano di un edificio¶
+ */
 public class Plan {
    public Plan (String numberPlan, Double metressquare, Double lenghtroom, String typeSimbol ){
         this.numberPlan=numberPlan;

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
- * classe per modellare il Sensore base
+ * classe per modellare il sensore base
  */
 public class Sensor implements Measurer, Publisher {
 
